@@ -5,3 +5,8 @@
  */
 
 include_once 'gsb_feature_admission_event_display.features.inc';
+
+function gsb_feature_admission_event_display_format_date($raw_value, $object) {
+  $date = date('l, F j, Y', strtotime($raw_value));
+  return $date;
+}
