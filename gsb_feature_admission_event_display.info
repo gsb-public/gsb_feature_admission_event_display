@@ -4,6 +4,7 @@ package = GSB
 version = 7.x-5.15
 project = gsb_feature_admission_event_display
 dependencies[] = better_exposed_filters
+dependencies[] = ctools
 dependencies[] = ds
 dependencies[] = panelizer
 dependencies[] = views
