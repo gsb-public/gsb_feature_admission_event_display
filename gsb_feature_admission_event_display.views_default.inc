@@ -468,7 +468,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['sorts']['field_title_value']['table'] = 'field_data_field_title';
   $handler->display->display_options['sorts']['field_title_value']['field'] = 'field_title_value';
   $handler->display->display_options['sorts']['field_title_value']['relationship'] = 'field_event_location_value';
-  /* Contextual filter: Content: Event Type (field_event_category) */
+  /* Contextual filter: Content: Event Category (field_event_category) */
   $handler->display->display_options['arguments']['field_event_category_tid']['id'] = 'field_event_category_tid';
   $handler->display->display_options['arguments']['field_event_category_tid']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['arguments']['field_event_category_tid']['field'] = 'field_event_category_tid';
@@ -493,7 +493,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     'event' => 'event',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Event Type (field_event_category) */
+  /* Filter criterion: Content: Event Category (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid']['id'] = 'field_event_category_tid';
   $handler->display->display_options['filters']['field_event_category_tid']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['filters']['field_event_category_tid']['field'] = 'field_event_category_tid';
@@ -502,7 +502,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   );
   $handler->display->display_options['filters']['field_event_category_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_event_category_tid']['vocabulary'] = 'event_category';
-  /* Filter criterion: Content: Event Type (field_event_category) */
+  /* Filter criterion: Content: Event Category (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid_1']['id'] = 'field_event_category_tid_1';
   $handler->display->display_options['filters']['field_event_category_tid_1']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['filters']['field_event_category_tid_1']['field'] = 'field_event_category_tid';
@@ -645,7 +645,9 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
+  $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'general' => array(
       'allow_secondary' => 1,
@@ -1087,12 +1089,12 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_search_field_value']['id'] = 'field_search_field_value';
   $handler->display->display_options['filters']['field_search_field_value']['table'] = 'field_data_field_search_field';
   $handler->display->display_options['filters']['field_search_field_value']['field'] = 'field_search_field_value';
+  $handler->display->display_options['filters']['field_search_field_value']['operator'] = 'contains';
   $handler->display->display_options['filters']['field_search_field_value']['group'] = 1;
   $handler->display->display_options['filters']['field_search_field_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_search_field_value']['expose']['operator_id'] = 'field_search_field_value_op';
-  $handler->display->display_options['filters']['field_search_field_value']['expose']['label'] = 'Search';
   $handler->display->display_options['filters']['field_search_field_value']['expose']['operator'] = 'field_search_field_value_op';
-  $handler->display->display_options['filters']['field_search_field_value']['expose']['identifier'] = 'field_search_field_value';
+  $handler->display->display_options['filters']['field_search_field_value']['expose']['identifier'] = 'search';
   $handler->display->display_options['filters']['field_search_field_value']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -1157,7 +1159,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator_id'] = 'field_event_date_value2_op';
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator'] = 'field_event_date_value2_op';
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['identifier'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['identifier'] = 'date_search';
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -1280,6 +1282,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_region_tid']['id'] = 'field_region_tid';
   $handler->display->display_options['filters']['field_region_tid']['table'] = 'field_data_field_region';
   $handler->display->display_options['filters']['field_region_tid']['field'] = 'field_region_tid';
+  $handler->display->display_options['filters']['field_region_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_region_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_region_tid']['expose']['operator_id'] = 'field_region_tid_op';
   $handler->display->display_options['filters']['field_region_tid']['expose']['label'] = 'Region';
@@ -1357,10 +1360,11 @@ function gsb_feature_admission_event_display_views_default_views() {
   );
   $handler->display->display_options['filters']['field_region_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_region_tid']['vocabulary'] = 'region';
-  /* Filter criterion: Content: Event Type (field_event_category) */
+  /* Filter criterion: Content: Event Category (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid_1']['id'] = 'field_event_category_tid_1';
   $handler->display->display_options['filters']['field_event_category_tid_1']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['filters']['field_event_category_tid_1']['field'] = 'field_event_category_tid';
+  $handler->display->display_options['filters']['field_event_category_tid_1']['group'] = 1;
   $handler->display->display_options['filters']['field_event_category_tid_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_category_tid_1']['expose']['operator_id'] = 'field_event_category_tid_1_op';
   $handler->display->display_options['filters']['field_event_category_tid_1']['expose']['label'] = 'Event Type';
@@ -1424,6 +1428,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
   $handler->display->display_options['filters']['field_event_date_value']['field'] = 'field_event_date_value';
   $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value']['group'] = 1;
   $handler->display->display_options['filters']['field_event_date_value']['default_date'] = 'now';
   $handler->display->display_options['pane_title'] = 'Admission Events: MBA';
   $handler->display->display_options['pane_category']['name'] = 'Non-customizable Content Lists';
