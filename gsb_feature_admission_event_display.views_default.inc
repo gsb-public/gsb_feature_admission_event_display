@@ -1216,10 +1216,6 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_location_type_value']['table'] = 'field_data_field_event_location_type';
   $handler->display->display_options['filters']['field_event_location_type_value']['field'] = 'field_event_location_type_value';
   $handler->display->display_options['filters']['field_event_location_type_value']['relationship'] = 'field_event_location_value';
-  $handler->display->display_options['filters']['field_event_location_type_value']['value'] = array(
-    'On campus' => 'On campus',
-    'Off campus' => 'Off campus',
-  );
   $handler->display->display_options['filters']['field_event_location_type_value']['group'] = 1;
   $handler->display->display_options['filters']['field_event_location_type_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_location_type_value']['expose']['operator_id'] = 'field_event_location_type_value_op';
@@ -1277,7 +1273,6 @@ function gsb_feature_admission_event_display_views_default_views() {
     211 => 0,
     251 => 0,
   );
-  $handler->display->display_options['filters']['field_event_location_type_value']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: Region (field_region) */
   $handler->display->display_options['filters']['field_region_tid']['id'] = 'field_region_tid';
   $handler->display->display_options['filters']['field_region_tid']['table'] = 'field_data_field_region';
