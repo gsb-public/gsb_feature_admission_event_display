@@ -26,6 +26,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
@@ -1273,6 +1274,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     211 => 0,
     251 => 0,
   );
+  $handler->display->display_options['filters']['field_event_location_type_value']['reduce_duplicates'] = TRUE;
   /* Filter criterion: Content: Region (field_region) */
   $handler->display->display_options['filters']['field_region_tid']['id'] = 'field_region_tid';
   $handler->display->display_options['filters']['field_region_tid']['table'] = 'field_data_field_region';
@@ -1353,6 +1355,7 @@ function gsb_feature_admission_event_display_views_default_views() {
       'value' => array(),
     ),
   );
+  $handler->display->display_options['filters']['field_region_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_region_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_region_tid']['vocabulary'] = 'region';
   /* Filter criterion: Content: Event Category (field_event_category) */
@@ -1416,6 +1419,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     211 => 0,
     251 => 0,
   );
+  $handler->display->display_options['filters']['field_event_category_tid_1']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_event_category_tid_1']['type'] = 'select';
   $handler->display->display_options['filters']['field_event_category_tid_1']['vocabulary'] = 'event_category';
   /* Filter criterion: Content: Date -  start date (field_event_date) */
