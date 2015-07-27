@@ -32,12 +32,6 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
-  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show more';
-  $handler->display->display_options['pager']['options']['use_go_to_top_link'] = 1;
-  $handler->display->display_options['pager']['options']['use_go_to_top_text'] = 'Back to the Top';
-  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
@@ -189,7 +183,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     'event' => 'event',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Event Category (field_event_category) */
+  /* Filter criterion: Content: Event Type (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid']['id'] = 'field_event_category_tid';
   $handler->display->display_options['filters']['field_event_category_tid']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['filters']['field_event_category_tid']['field'] = 'field_event_category_tid';
@@ -198,7 +192,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   );
   $handler->display->display_options['filters']['field_event_category_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_event_category_tid']['vocabulary'] = 'event_category';
-  /* Filter criterion: Content: Event Category (field_event_category) */
+  /* Filter criterion: Content: Event Type (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid_1']['id'] = 'field_event_category_tid_1';
   $handler->display->display_options['filters']['field_event_category_tid_1']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['filters']['field_event_category_tid_1']['field'] = 'field_event_category_tid';
@@ -613,6 +607,15 @@ function gsb_feature_admission_event_display_views_default_views() {
   );
   $handler->display->display_options['exposed_form']['options']['input_required'] = 0;
   $handler->display->display_options['exposed_form']['options']['text_input_required_format'] = 'gsb_wysiwyg_text';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'load_more';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['pager']['options']['more_button_text'] = 'Show more';
+  $handler->display->display_options['pager']['options']['use_go_to_top_link'] = 0;
+  $handler->display->display_options['pager']['options']['effects']['speed'] = 'slow';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['grouping'] = array(
@@ -1053,7 +1056,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_region_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_region_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_region_tid']['vocabulary'] = 'region';
-  /* Filter criterion: Content: Event Category (field_event_category) */
+  /* Filter criterion: Content: Event Type (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid_1']['id'] = 'field_event_category_tid_1';
   $handler->display->display_options['filters']['field_event_category_tid_1']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['filters']['field_event_category_tid_1']['field'] = 'field_event_category_tid';
@@ -1135,6 +1138,10 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -1427,7 +1434,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     251 => 0,
   );
   $handler->display->display_options['filters']['field_event_location_type_value']['reduce_duplicates'] = TRUE;
-  /* Filter criterion: Content: Event Category (field_event_category) */
+  /* Filter criterion: Content: Event Type (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid']['id'] = 'field_event_category_tid';
   $handler->display->display_options['filters']['field_event_category_tid']['table'] = 'field_data_field_event_category';
   $handler->display->display_options['filters']['field_event_category_tid']['field'] = 'field_event_category_tid';
