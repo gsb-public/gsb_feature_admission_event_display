@@ -73,3 +73,6 @@ function gsb_feature_admission_event_display_panels_pane_content_alter($content,
   }
 }
 
+function gsb_feature_admission_event_display_views_post_render(&$views) {
+  drupal_add_js(drupal_get_path('module', 'gsb_feature_admission_event_display') . '/js/gsb_feature_admission_event_display.js');
+}
