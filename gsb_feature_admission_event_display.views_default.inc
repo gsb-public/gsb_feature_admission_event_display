@@ -911,6 +911,8 @@ function gsb_feature_admission_event_display_views_default_views() {
     251 => 0,
   );
   $handler->display->display_options['filters']['field_event_date_value2']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['field_event_date_value2']['default_date'] = 'now';
+  $handler->display->display_options['filters']['field_event_date_value2']['year_range'] = '2005:+3';
   /* Filter criterion: Field collection item: Location Type (field_event_location_type) */
   $handler->display->display_options['filters']['field_event_location_type_value']['id'] = 'field_event_location_type_value';
   $handler->display->display_options['filters']['field_event_location_type_value']['table'] = 'field_data_field_event_location_type';
@@ -1121,13 +1123,6 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_category_tid_1']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_event_category_tid_1']['type'] = 'select';
   $handler->display->display_options['filters']['field_event_category_tid_1']['vocabulary'] = 'event_category';
-  /* Filter criterion: Content: Date -  start date (field_event_date) */
-  $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
-  $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
-  $handler->display->display_options['filters']['field_event_date_value']['field'] = 'field_event_date_value';
-  $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>=';
-  $handler->display->display_options['filters']['field_event_date_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_event_date_value']['default_date'] = 'now';
   /* Filter criterion: Content: Calendar Display (field_calendar_display) */
   $handler->display->display_options['filters']['field_calendar_display_value']['id'] = 'field_calendar_display_value';
   $handler->display->display_options['filters']['field_calendar_display_value']['table'] = 'field_data_field_calendar_display';
