@@ -912,7 +912,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   );
   $handler->display->display_options['filters']['field_event_date_value2']['form_type'] = 'date_popup';
   $handler->display->display_options['filters']['field_event_date_value2']['default_date'] = 'now';
-  $handler->display->display_options['filters']['field_event_date_value2']['default_to_date'] = 'now +3 years';
+  $handler->display->display_options['filters']['field_event_date_value2']['default_to_date'] = 'now +1 years';
   $handler->display->display_options['filters']['field_event_date_value2']['year_range'] = '2005:+3';
   /* Filter criterion: Field collection item: Location Type (field_event_location_type) */
   $handler->display->display_options['filters']['field_event_location_type_value']['id'] = 'field_event_location_type_value';
