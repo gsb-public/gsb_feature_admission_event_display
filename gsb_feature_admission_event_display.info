@@ -1,4 +1,4 @@
-me = GSB Feature Admission Event Display
+name = GSB Feature Admission Event Display
 core = 7.x
 package = GSB
 version = 7.x-5.15
