@@ -44,6 +44,7 @@ function gsb_feature_admission_event_display_form_views_content_views_panes_cont
     $form = gsb_misc_fixes_associative_insert($form, 'override_title_text', $item);
     $form['comments']['#access'] = FALSE;
     $form['links']['#access'] = FALSE;
+    $form['override_title_heading']['#access'] = FALSE;
     $form['#submit'][] = 'gsb_feature_admission_event_display_form_submit';
   }
 
