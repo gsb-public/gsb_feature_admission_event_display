@@ -228,6 +228,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_category_tid_1']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['field_event_category_tid_1']['type'] = 'select';
   $handler->display->display_options['filters']['field_event_category_tid_1']['vocabulary'] = 'event_category';
+  $handler->display->display_options['filters']['field_event_category_tid_1']['error_message'] = FALSE;
   /* Filter criterion: Content: Date -  start date (field_event_date) */
   $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -1060,6 +1061,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_region_tid']['reduce_duplicates'] = TRUE;
   $handler->display->display_options['filters']['field_region_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_region_tid']['vocabulary'] = 'region';
+  $handler->display->display_options['filters']['field_region_tid']['error_message'] = FALSE;
   /* Filter criterion: Content: Event Type (field_event_category) */
   $handler->display->display_options['filters']['field_event_category_tid_1']['id'] = 'field_event_category_tid_1';
   $handler->display->display_options['filters']['field_event_category_tid_1']['table'] = 'field_data_field_event_category';
