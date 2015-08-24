@@ -65,7 +65,10 @@ function gsb_feature_admission_event_display_form_submit($form, &$form_state) {
 function gsb_feature_admission_event_display_panels_pane_content_alter($content, $pane, $args, $context) {
   if ($content && $content->subtype == 'admission_events-admission_event_panel_pane') {
     if (!empty($pane->configuration['title_link'])) {
-      $content->title = decode_entities(l($content->title, $pane->configuration['title_link']));
+      $url_parts = drupal_parse_url($pane->configuration['title_link']);
+      // Don't sanitize the title. It will get sanitized later.
+      $url_parts['html'] = TRUE;
+      $content->title = l($content->title, $url_parts['path'], $url_parts);
     }
   }
 }
