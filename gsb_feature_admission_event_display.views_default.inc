@@ -864,7 +864,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value2']['group'] = 1;
   $handler->display->display_options['filters']['field_event_date_value2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator_id'] = 'field_event_date_value2_op';
-  $handler->display->display_options['filters']['field_event_date_value2']['expose']['label'] = 'Start Date';
+  $handler->display->display_options['filters']['field_event_date_value2']['expose']['label'] = 'Date from';
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['operator'] = 'field_event_date_value2_op';
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['identifier'] = 'date_search';
   $handler->display->display_options['filters']['field_event_date_value2']['expose']['remember_roles'] = array(
@@ -934,7 +934,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value']['group'] = 1;
   $handler->display->display_options['filters']['field_event_date_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_date_value']['expose']['operator_id'] = 'field_event_date_value_op';
-  $handler->display->display_options['filters']['field_event_date_value']['expose']['label'] = 'End Date';
+  $handler->display->display_options['filters']['field_event_date_value']['expose']['label'] = 'to';
   $handler->display->display_options['filters']['field_event_date_value']['expose']['operator'] = 'field_event_date_value_op';
   $handler->display->display_options['filters']['field_event_date_value']['expose']['identifier'] = 'field_event_date_value';
   $handler->display->display_options['filters']['field_event_date_value']['expose']['remember_roles'] = array(
