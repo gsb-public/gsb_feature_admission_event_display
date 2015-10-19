@@ -1,7 +1,7 @@
 name = GSB Feature Admission Event Display
 core = 7.x
 package = GSB
-version = 7.x-5.18
+version = 7.x-5.20
 project = gsb_feature_admission_event_display
 dependencies[] = better_exposed_filters
 dependencies[] = ds
@@ -14,3 +14,4 @@ features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[views_view][] = admission_events
 features_exclude[dependencies][views] = views
+features_exclude[dependencies][ctools] = ctools

@@ -48,6 +48,44 @@ function gsb_feature_admission_event_display_form_views_content_views_panes_cont
     $form['#submit'][] = 'gsb_feature_admission_event_display_form_submit';
   }
 
+  if($form_state['subtype_name'] == 'admission_events-location_panel_pane') {
+    $filter_ops = $form['exposed']['filter-field_event_date_value']['field_event_date_value_op']['#options'];
+    foreach ($filter_ops as $key => $value) {
+      if ($key !== '<' AND $key !== '>' AND $key !== 'not empty') {
+        unset($form['exposed']['filter-field_event_date_value']['field_event_date_value_op']['#options'][$key]);
+      }
+      else {
+        if ($key == '<') {
+          $form['exposed']['filter-field_event_date_value']['field_event_date_value_op']['#options'][$key] = 'Past';
+        }
+        if ($key == '>') {
+          $form['exposed']['filter-field_event_date_value']['field_event_date_value_op']['#options'][$key] = 'Future';
+        }
+        if ($key == 'not empty') {
+          $form['exposed']['filter-field_event_date_value']['field_event_date_value_op']['#options'][$key] = 'All';
+        }
+      }
+
+    }
+    unset($form['exposed']['filter-field_event_date_value']['field_event_date_value']['min']);
+    unset($form['exposed']['filter-field_event_date_value']['field_event_date_value']['max']);
+    $form['exposed']['filter-field_event_date_value']['field_event_date_value']['value']['#access'] = FALSE;
+    $include_option = $form['exposed']['filter-field_address_locality']['field_address_locality_op']['#options'];
+    foreach ($include_option as $key => $value) {
+      if ($key !== '!=' AND $key !== 'not empty') {
+        unset($form['exposed']['filter-field_address_locality']['field_address_locality_op']['#options'][$key]);
+      }
+      else {
+        if ($key == '!=') {
+          $form['exposed']['filter-field_address_locality']['field_address_locality_op']['#options'][$key] = 'No';
+        }
+        if ($key == 'not empty') {
+          $form['exposed']['filter-field_address_locality']['field_address_locality_op']['#options'][$key] = 'Yes';
+        }
+      }
+      $form['exposed']['filter-field_address_locality']['field_address_locality']['#access'] = FALSE;
+    }
+  }
 }
 
 /**
@@ -73,8 +111,46 @@ function gsb_feature_admission_event_display_panels_pane_content_alter($content,
   }
 }
 
-function gsb_feature_admission_event_display_views_post_render(&$views) {
+function gsb_feature_admission_event_display_views_post_render(&$views, &$output) {
   if ($views->name == 'admission_events' && $views->current_display == 'mba_admission_panel_pane') {
      drupal_add_js(drupal_get_path('module', 'gsb_feature_admission_event_display') . '/js/gsb_feature_admission_event_display.js');
+  }
+  if ($views->name == 'admission_events' && $views->current_display == 'location_panel_pane') {
+    $output = str_replace(', United States ','',$output);
+    drupal_add_js(drupal_get_path('module', 'gsb_feature_admission_event_display') . '/js/gsb_feature_admission_event_location.js');
+  }
+}
+
+function gsb_feature_admission_event_display_views_pre_render($view){
+  if ($view->name == 'admission_events' && $view->current_display == 'location_panel_pane') {
+    $unique_tids = array();
+    foreach($view->result AS $k => $result){
+      if(in_array($result->field_collection_item_field_data_field_event_location__field, $unique_tids) || !$result->field_collection_item_field_data_field_event_location__field) {
+        unset($view->result[$k]);
+      }
+      else {
+        $unique_tids[$k] = $result->field_collection_item_field_data_field_event_location__field;
+      }
+      if ($result->field_collection_item_field_data_field_event_location__field_2 == 'US'){
+        $result->field_collection_item_field_data_field_event_location__field_2 = '';
+      }
+    }
+    $alpha_arr = array();
+    // cycle each of our unique tids, referencing the original key of the view->result array ($k1
+    foreach($unique_tids AS $k => $tid) {
+      // we need to grab the term now, not the tid to sort alpha
+      $alpha_arr[$k] = strtolower(trim($view->result[$k]->field_field_region[0]['rendered']['#markup']).$view->result[$k]->field_collection_item_field_data_field_event_location__field_2.$view->result[$k]->field_collection_item_field_data_field_event_location__field_1.trim($view->result[$k]->field_collection_item_field_data_field_event_country__field));
+    }
+    // sort the array, maintaining the $k key so that we may again reference back to the original data
+    asort($alpha_arr);
+    // create new array of results to overwrite the current one
+    $new_results = array();
+    foreach($alpha_arr AS $v => $term_name) {
+      $new_results[] = $view->result[$v];
+    }
+    // get rid of the original result set
+    unset($view->result);
+    // replace it with our new result set
+    $view->result = $new_results;
   }
 }

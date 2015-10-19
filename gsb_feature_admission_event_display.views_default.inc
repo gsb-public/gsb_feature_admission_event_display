@@ -28,19 +28,25 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['pager']['type'] = 'load_more';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
-      'field' => 'field_event_date',
+      'field' => 'field_region',
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
   );
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'field_address_locality' => 'field_address_locality',
+    'field_address_administrative_area' => 'field_address_administrative_area',
+    'field_address_country' => 'field_address_country',
+  );
+  $handler->display->display_options['row_options']['separator'] = ',';
   $handler->display->display_options['row_options']['hide_empty'] = TRUE;
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
@@ -154,16 +160,25 @@ function gsb_feature_admission_event_display_views_default_views() {
       ),
     ),
   );
-  /* Sort criterion: Content: Date -  start date (field_event_date) */
-  $handler->display->display_options['sorts']['field_event_date_value']['id'] = 'field_event_date_value';
-  $handler->display->display_options['sorts']['field_event_date_value']['table'] = 'field_data_field_event_date';
-  $handler->display->display_options['sorts']['field_event_date_value']['field'] = 'field_event_date_value';
-  $handler->display->display_options['sorts']['field_event_date_value']['expose']['label'] = 'Date sort';
-  /* Sort criterion: Field: Title (field_title) */
-  $handler->display->display_options['sorts']['field_title_value']['id'] = 'field_title_value';
-  $handler->display->display_options['sorts']['field_title_value']['table'] = 'field_data_field_title';
-  $handler->display->display_options['sorts']['field_title_value']['field'] = 'field_title_value';
-  $handler->display->display_options['sorts']['field_title_value']['relationship'] = 'field_event_location_value';
+  /* Sort criterion: Content: Region (field_region) */
+  $handler->display->display_options['sorts']['field_region_tid']['id'] = 'field_region_tid';
+  $handler->display->display_options['sorts']['field_region_tid']['table'] = 'field_data_field_region';
+  $handler->display->display_options['sorts']['field_region_tid']['field'] = 'field_region_tid';
+  /* Sort criterion: Field collection item: Address - Country */
+  $handler->display->display_options['sorts']['field_address_country']['id'] = 'field_address_country';
+  $handler->display->display_options['sorts']['field_address_country']['table'] = 'field_data_field_address';
+  $handler->display->display_options['sorts']['field_address_country']['field'] = 'field_address_country';
+  $handler->display->display_options['sorts']['field_address_country']['relationship'] = 'field_event_location_value';
+  /* Sort criterion: Field collection item: Address - Administrative area (i.e. State / Province) */
+  $handler->display->display_options['sorts']['field_address_administrative_area']['id'] = 'field_address_administrative_area';
+  $handler->display->display_options['sorts']['field_address_administrative_area']['table'] = 'field_data_field_address';
+  $handler->display->display_options['sorts']['field_address_administrative_area']['field'] = 'field_address_administrative_area';
+  $handler->display->display_options['sorts']['field_address_administrative_area']['relationship'] = 'field_event_location_value';
+  /* Sort criterion: Field collection item: Address - Locality (i.e. City) */
+  $handler->display->display_options['sorts']['field_address_locality']['id'] = 'field_address_locality';
+  $handler->display->display_options['sorts']['field_address_locality']['table'] = 'field_data_field_address';
+  $handler->display->display_options['sorts']['field_address_locality']['field'] = 'field_address_locality';
+  $handler->display->display_options['sorts']['field_address_locality']['relationship'] = 'field_event_location_value';
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
     2 => 'OR',
@@ -1696,6 +1711,336 @@ function gsb_feature_admission_event_display_views_default_views() {
       'field_event_location_type_value' => '',
       'field_event_category_tid' => '',
       'field_tag_tid' => '',
+    ),
+  );
+
+  /* Display: Admission Event Locations */
+  $handler = $view->new_display('panel_pane', 'Admission Event Locations', 'location_panel_pane');
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_region',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['inline'] = array(
+    'field_address_locality' => 'field_address_locality',
+    'field_address_administrative_area' => 'field_address_administrative_area',
+    'field_address_country' => 'field_address_country',
+  );
+  $handler->display->display_options['row_options']['separator'] = ',';
+  $handler->display->display_options['row_options']['hide_empty'] = TRUE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Field collection item: Address - Locality (i.e. City) */
+  $handler->display->display_options['fields']['field_address_locality']['id'] = 'field_address_locality';
+  $handler->display->display_options['fields']['field_address_locality']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_locality']['field'] = 'field_address_locality';
+  $handler->display->display_options['fields']['field_address_locality']['relationship'] = 'field_event_location_value';
+  $handler->display->display_options['fields']['field_address_locality']['label'] = '';
+  $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
+  /* Field: Field collection item: Address - Administrative area (i.e. State / Province) */
+  $handler->display->display_options['fields']['field_address_administrative_area']['id'] = 'field_address_administrative_area';
+  $handler->display->display_options['fields']['field_address_administrative_area']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_administrative_area']['field'] = 'field_address_administrative_area';
+  $handler->display->display_options['fields']['field_address_administrative_area']['relationship'] = 'field_event_location_value';
+  $handler->display->display_options['fields']['field_address_administrative_area']['label'] = '';
+  $handler->display->display_options['fields']['field_address_administrative_area']['alter']['text'] = ', [field_address_administrative_area]';
+  $handler->display->display_options['fields']['field_address_administrative_area']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_administrative_area']['hide_empty'] = TRUE;
+  /* Field: Field collection item: Address - Country */
+  $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
+  $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
+  $handler->display->display_options['fields']['field_address_country']['field'] = 'field_address_country';
+  $handler->display->display_options['fields']['field_address_country']['relationship'] = 'field_event_location_value';
+  $handler->display->display_options['fields']['field_address_country']['label'] = '';
+  $handler->display->display_options['fields']['field_address_country']['alter']['text'] = '[field_address_locality][field_address_administrative_area], [field_address_country] ';
+  $handler->display->display_options['fields']['field_address_country']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_country']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
+  /* Field: Content: Region */
+  $handler->display->display_options['fields']['field_region']['id'] = 'field_region';
+  $handler->display->display_options['fields']['field_region']['table'] = 'field_data_field_region';
+  $handler->display->display_options['fields']['field_region']['field'] = 'field_region';
+  $handler->display->display_options['fields']['field_region']['label'] = '';
+  $handler->display->display_options['fields']['field_region']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_region']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_region']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_region']['settings'] = array(
+    'conditions' => array(
+      0 => array(
+        'condition' => '',
+      ),
+    ),
+  );
+  $handler->display->display_options['fields']['field_region']['delta_offset'] = '0';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'admission_event' => 'admission_event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Date -  start date (field_event_date) */
+  $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
+  $handler->display->display_options['filters']['field_event_date_value']['field'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_event_date_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_event_date_value']['expose']['operator_id'] = 'field_event_date_value_op';
+  $handler->display->display_options['filters']['field_event_date_value']['expose']['label'] = 'Date options';
+  $handler->display->display_options['filters']['field_event_date_value']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['field_event_date_value']['expose']['operator'] = 'field_event_date_value_op';
+  $handler->display->display_options['filters']['field_event_date_value']['expose']['identifier'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    11 => 0,
+    151 => 0,
+    16 => 0,
+    21 => 0,
+    241 => 0,
+    71 => 0,
+    61 => 0,
+    171 => 0,
+    56 => 0,
+    66 => 0,
+    201 => 0,
+    221 => 0,
+    216 => 0,
+    226 => 0,
+    231 => 0,
+    246 => 0,
+    236 => 0,
+    31 => 0,
+    36 => 0,
+    41 => 0,
+    91 => 0,
+    146 => 0,
+    136 => 0,
+    26 => 0,
+    46 => 0,
+    51 => 0,
+    81 => 0,
+    86 => 0,
+    96 => 0,
+    101 => 0,
+    106 => 0,
+    116 => 0,
+    121 => 0,
+    126 => 0,
+    131 => 0,
+    141 => 0,
+    156 => 0,
+    161 => 0,
+    166 => 0,
+    176 => 0,
+    181 => 0,
+    186 => 0,
+    191 => 0,
+    206 => 0,
+    211 => 0,
+    251 => 0,
+    256 => 0,
+    261 => 0,
+    266 => 0,
+    271 => 0,
+    276 => 0,
+  );
+  $handler->display->display_options['filters']['field_event_date_value']['group_info']['label'] = 'Date -  start date (field_event_date)';
+  $handler->display->display_options['filters']['field_event_date_value']['group_info']['identifier'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_event_date_value']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
+  );
+  $handler->display->display_options['filters']['field_event_date_value']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['field_event_date_value']['default_date'] = '12AM today';
+  /* Filter criterion: Field: Program (field_program_single) */
+  $handler->display->display_options['filters']['field_program_single_tid']['id'] = 'field_program_single_tid';
+  $handler->display->display_options['filters']['field_program_single_tid']['table'] = 'field_data_field_program_single';
+  $handler->display->display_options['filters']['field_program_single_tid']['field'] = 'field_program_single_tid';
+  $handler->display->display_options['filters']['field_program_single_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_program_single_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_program_single_tid']['expose']['operator_id'] = 'field_program_single_tid_op';
+  $handler->display->display_options['filters']['field_program_single_tid']['expose']['label'] = 'Program';
+  $handler->display->display_options['filters']['field_program_single_tid']['expose']['operator'] = 'field_program_single_tid_op';
+  $handler->display->display_options['filters']['field_program_single_tid']['expose']['identifier'] = 'field_program_single_tid';
+  $handler->display->display_options['filters']['field_program_single_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    11 => 0,
+    151 => 0,
+    16 => 0,
+    21 => 0,
+    241 => 0,
+    71 => 0,
+    61 => 0,
+    171 => 0,
+    56 => 0,
+    66 => 0,
+    201 => 0,
+    221 => 0,
+    216 => 0,
+    226 => 0,
+    231 => 0,
+    246 => 0,
+    236 => 0,
+    31 => 0,
+    36 => 0,
+    41 => 0,
+    91 => 0,
+    146 => 0,
+    136 => 0,
+    26 => 0,
+    46 => 0,
+    51 => 0,
+    81 => 0,
+    86 => 0,
+    96 => 0,
+    101 => 0,
+    106 => 0,
+    116 => 0,
+    121 => 0,
+    126 => 0,
+    131 => 0,
+    141 => 0,
+    156 => 0,
+    161 => 0,
+    166 => 0,
+    176 => 0,
+    181 => 0,
+    186 => 0,
+    191 => 0,
+    206 => 0,
+    211 => 0,
+    251 => 0,
+    256 => 0,
+    261 => 0,
+    266 => 0,
+    271 => 0,
+    276 => 0,
+  );
+  $handler->display->display_options['filters']['field_program_single_tid']['reduce_duplicates'] = TRUE;
+  $handler->display->display_options['filters']['field_program_single_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_program_single_tid']['vocabulary'] = 'program';
+  $handler->display->display_options['filters']['field_program_single_tid']['error_message'] = FALSE;
+  /* Filter criterion: Field collection item: Address - Locality (i.e. City) */
+  $handler->display->display_options['filters']['field_address_locality']['id'] = 'field_address_locality';
+  $handler->display->display_options['filters']['field_address_locality']['table'] = 'field_data_field_address';
+  $handler->display->display_options['filters']['field_address_locality']['field'] = 'field_address_locality';
+  $handler->display->display_options['filters']['field_address_locality']['relationship'] = 'field_event_location_value';
+  $handler->display->display_options['filters']['field_address_locality']['operator'] = '!=';
+  $handler->display->display_options['filters']['field_address_locality']['value'] = 'Stanford';
+  $handler->display->display_options['filters']['field_address_locality']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_address_locality']['expose']['operator_id'] = 'field_address_locality_op';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['label'] = 'Include Stanford';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['use_operator'] = TRUE;
+  $handler->display->display_options['filters']['field_address_locality']['expose']['operator'] = 'field_address_locality_op';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['identifier'] = 'field_address_locality';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    11 => 0,
+    151 => 0,
+    16 => 0,
+    21 => 0,
+    241 => 0,
+    71 => 0,
+    61 => 0,
+    171 => 0,
+    56 => 0,
+    66 => 0,
+    201 => 0,
+    221 => 0,
+    216 => 0,
+    226 => 0,
+    231 => 0,
+    246 => 0,
+    236 => 0,
+    31 => 0,
+    36 => 0,
+    41 => 0,
+    91 => 0,
+    146 => 0,
+    136 => 0,
+    26 => 0,
+    46 => 0,
+    51 => 0,
+    81 => 0,
+    86 => 0,
+    96 => 0,
+    101 => 0,
+    106 => 0,
+    116 => 0,
+    121 => 0,
+    126 => 0,
+    131 => 0,
+    141 => 0,
+    156 => 0,
+    161 => 0,
+    166 => 0,
+    176 => 0,
+    181 => 0,
+    186 => 0,
+    191 => 0,
+    206 => 0,
+    211 => 0,
+    251 => 0,
+    256 => 0,
+    261 => 0,
+    266 => 0,
+    271 => 0,
+    276 => 0,
+  );
+  $handler->display->display_options['filters']['field_address_locality']['expose']['autocomplete_items'] = '10';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['autocomplete_min_chars'] = '0';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['autocomplete_field'] = 'field_address_locality';
+  $handler->display->display_options['filters']['field_address_locality']['expose']['autocomplete_raw_suggestion'] = 1;
+  $handler->display->display_options['filters']['field_address_locality']['expose']['autocomplete_raw_dropdown'] = 1;
+  $handler->display->display_options['filters']['field_address_locality']['expose']['autocomplete_dependent'] = 0;
+  $handler->display->display_options['pane_title'] = 'Admission Event Locations: Multiple Criteria';
+  $handler->display->display_options['pane_category']['name'] = 'Customizable Content Lists';
+  $handler->display->display_options['pane_category']['weight'] = '0';
+  $handler->display->display_options['allow']['use_pager'] = 0;
+  $handler->display->display_options['allow']['set_view_mode'] = 0;
+  $handler->display->display_options['allow']['set_style_plugin'] = 0;
+  $handler->display->display_options['allow']['items_per_page'] = 0;
+  $handler->display->display_options['allow']['offset'] = 0;
+  $handler->display->display_options['allow']['link_to_view'] = 0;
+  $handler->display->display_options['allow']['more_link'] = 0;
+  $handler->display->display_options['allow']['path_override'] = 0;
+  $handler->display->display_options['allow']['title_override'] = 'title_override';
+  $handler->display->display_options['allow']['exposed_form'] = 'exposed_form';
+  $handler->display->display_options['allow']['exposed_form_configure'] = 0;
+  $handler->display->display_options['allow']['fields_override'] = 0;
+  $handler->display->display_options['exposed_form_overrides'] = array(
+    'filters' => array(
+      'field_event_date_value' => '',
+      'field_program_single_tid' => '',
     ),
   );
   $export['admission_events'] = $view;
