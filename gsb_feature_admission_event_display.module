@@ -139,7 +139,8 @@ function gsb_feature_admission_event_display_views_pre_render($view){
     // cycle each of our unique tids, referencing the original key of the view->result array ($k1
     foreach($unique_tids AS $k => $tid) {
       // we need to grab the term now, not the tid to sort alpha
-      $alpha_arr[$k] = strtolower(trim($view->result[$k]->field_field_region[0]['rendered']['#markup']).$view->result[$k]->field_collection_item_field_data_field_event_location__field_2.$view->result[$k]->field_collection_item_field_data_field_event_location__field_1.trim($view->result[$k]->field_collection_item_field_data_field_event_country__field));
+      //$alpha_arr[$k] = strtolower(trim($view->result[$k]->field_field_region[0]['rendered']['#markup']).$view->result[$k]->field_collection_item_field_data_field_event_location__field_2.$view->result[$k]->field_collection_item_field_data_field_event_location__field_1.trim($view->result[$k]->field_collection_item_field_data_field_event_country__field));
+      $alpha_arr[$k] = strtolower(trim($view->result[$k]->field_field_region[0]['rendered']['#markup']).$view->result[$k]->field_collection_item_field_data_field_event_location__field_2.$view->result[$k]->field_collection_item_field_data_field_event_location__field_1.$view->result[$k]->field_collection_item_field_data_field_event_location__field);
     }
     // sort the array, maintaining the $k key so that we may again reference back to the original data
     asort($alpha_arr);
