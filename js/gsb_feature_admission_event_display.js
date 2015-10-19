@@ -2,6 +2,24 @@
 
   Drupal.behaviors.gsb_feature_admission_event_display = {
     attach: function (context, settings) {
+      $(function() {
+        $("#edit-date-search-value-datepicker-popup-0").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        minDate: new Date(),
+        maxDate: "+3y",
+        dateFormat: "M dd yy"
+        });
+      // $("#edit-date-search-value-datepicker-popup-0").datepicker({ minDate: new Date() });
+        $("#edit-field-event-date-value-value-datepicker-popup-0").datepicker({
+          changeMonth: true,
+          changeYear: true,
+          minDate: new Date(),
+          maxDate: "+3y",
+          dateFormat: "M dd yy"
+        });
+      // $("#edit-field-event-date-value-value-datepicker-popup-0").datepicker({ minDate: new Date() });
+      });
       if ($("#edit-date-search-value-datepicker-popup-0").val() == "" ){
         var start_date = $.datepicker.formatDate('M dd yy', new Date());
         $("#edit-date-search-value-datepicker-popup-0").val(start_date);
