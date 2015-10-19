@@ -1718,15 +1718,20 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler = $view->new_display('panel_pane', 'Admission Event Locations', 'location_panel_pane');
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
       'field' => 'field_region',
       'rendered' => 1,
-      'rendered_strip' => 0,
+      'rendered_strip' => 1,
     ),
   );
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -1735,7 +1740,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     'field_address_administrative_area' => 'field_address_administrative_area',
     'field_address_country' => 'field_address_country',
   );
-  $handler->display->display_options['row_options']['separator'] = ',';
+  $handler->display->display_options['row_options']['separator'] = '<span class="comma">,</span>';
   $handler->display->display_options['row_options']['hide_empty'] = TRUE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -1746,6 +1751,8 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['fields']['field_address_locality']['relationship'] = 'field_event_location_value';
   $handler->display->display_options['fields']['field_address_locality']['label'] = '';
   $handler->display->display_options['fields']['field_address_locality']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_locality']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_address_locality']['element_default_classes'] = FALSE;
   /* Field: Field collection item: Address - Administrative area (i.e. State / Province) */
   $handler->display->display_options['fields']['field_address_administrative_area']['id'] = 'field_address_administrative_area';
   $handler->display->display_options['fields']['field_address_administrative_area']['table'] = 'field_data_field_address';
@@ -1754,7 +1761,10 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['fields']['field_address_administrative_area']['label'] = '';
   $handler->display->display_options['fields']['field_address_administrative_area']['alter']['text'] = ', [field_address_administrative_area]';
   $handler->display->display_options['fields']['field_address_administrative_area']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_administrative_area']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_address_administrative_area']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_address_administrative_area']['hide_empty'] = TRUE;
+  $handler->display->display_options['fields']['field_address_administrative_area']['display_name'] = 1;
   /* Field: Field collection item: Address - Country */
   $handler->display->display_options['fields']['field_address_country']['id'] = 'field_address_country';
   $handler->display->display_options['fields']['field_address_country']['table'] = 'field_data_field_address';
@@ -1763,6 +1773,8 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['fields']['field_address_country']['label'] = '';
   $handler->display->display_options['fields']['field_address_country']['alter']['text'] = '[field_address_locality][field_address_administrative_area], [field_address_country] ';
   $handler->display->display_options['fields']['field_address_country']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_address_country']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_address_country']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_address_country']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_address_country']['display_name'] = 1;
   /* Field: Content: Region */
@@ -1771,7 +1783,9 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['fields']['field_region']['field'] = 'field_region';
   $handler->display->display_options['fields']['field_region']['label'] = '';
   $handler->display->display_options['fields']['field_region']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_region']['alter']['trim_whitespace'] = TRUE;
   $handler->display->display_options['fields']['field_region']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_region']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_region']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_region']['settings'] = array(
     'conditions' => array(
