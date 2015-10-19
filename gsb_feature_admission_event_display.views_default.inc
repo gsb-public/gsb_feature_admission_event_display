@@ -1891,7 +1891,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     2 => array(),
     3 => array(),
   );
-  $handler->display->display_options['filters']['field_event_date_value']['form_type'] = 'date_text';
+  $handler->display->display_options['filters']['field_event_date_value']['form_type'] = 'date_popup';
   $handler->display->display_options['filters']['field_event_date_value']['default_date'] = '12AM today';
   /* Filter criterion: Field: Program (field_program_single) */
   $handler->display->display_options['filters']['field_program_single_tid']['id'] = 'field_program_single_tid';
