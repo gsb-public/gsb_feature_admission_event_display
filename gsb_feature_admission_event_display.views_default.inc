@@ -1777,6 +1777,9 @@ function gsb_feature_admission_event_display_views_default_views() {
     'conditions' => array(
       0 => array(
         'condition' => '',
+        'configuration' => array(
+          'target' => 'fieldable_panels_pane',
+        ),
       ),
     ),
   );
@@ -1883,7 +1886,6 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_program_single_tid']['id'] = 'field_program_single_tid';
   $handler->display->display_options['filters']['field_program_single_tid']['table'] = 'field_data_field_program_single';
   $handler->display->display_options['filters']['field_program_single_tid']['field'] = 'field_program_single_tid';
-  $handler->display->display_options['filters']['field_program_single_tid']['value'] = '';
   $handler->display->display_options['filters']['field_program_single_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_program_single_tid']['expose']['operator_id'] = 'field_program_single_tid_op';
   $handler->display->display_options['filters']['field_program_single_tid']['expose']['label'] = 'Program';
@@ -1954,7 +1956,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_address_locality']['field'] = 'field_address_locality';
   $handler->display->display_options['filters']['field_address_locality']['relationship'] = 'field_event_location_value';
   $handler->display->display_options['filters']['field_address_locality']['operator'] = '!=';
-  $handler->display->display_options['filters']['field_address_locality']['value'] = 'Stanford';
+  $handler->display->display_options['filters']['field_address_locality']['value'] = ' Stanford ';
   $handler->display->display_options['filters']['field_address_locality']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_address_locality']['expose']['operator_id'] = 'field_address_locality_op';
   $handler->display->display_options['filters']['field_address_locality']['expose']['label'] = 'Include Stanford';
