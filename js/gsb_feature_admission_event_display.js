@@ -10,7 +10,6 @@
         maxDate: "+3y",
         dateFormat: "M dd yy"
         });
-      // $("#edit-date-search-value-datepicker-popup-0").datepicker({ minDate: new Date() });
         $("#edit-field-event-date-value-value-datepicker-popup-0").datepicker({
           changeMonth: true,
           changeYear: true,
@@ -18,7 +17,6 @@
           maxDate: "+3y",
           dateFormat: "M dd yy"
         });
-      // $("#edit-field-event-date-value-value-datepicker-popup-0").datepicker({ minDate: new Date() });
       });
       if ($("#edit-date-search-value-datepicker-popup-0").val() == "" ){
         var start_date = $.datepicker.formatDate('M dd yy', new Date());
