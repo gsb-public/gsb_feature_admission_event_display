@@ -5,7 +5,7 @@
       $('.view-content h3').each(function() {
         $(this).addClass('acc-title');
       });
-      $('.view-content div').addClass('acc-body');
+      $('.pane-admission-events-location-panel-pane .view-content div').addClass('acc-body');
     }
   };
 })(jQuery);
