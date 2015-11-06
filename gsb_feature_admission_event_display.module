@@ -117,9 +117,6 @@ function gsb_feature_admission_event_display_panels_pane_content_alter($content,
 }
 
 function gsb_feature_admission_event_display_views_post_render(&$views, &$output) {
-  if ($views->name == 'admission_events' && ($views->current_display == 'mba_admission_panel_pane' || $views->current_display == 'msx_admission_panel_pane')) {
-     drupal_add_js(drupal_get_path('module', 'gsb_feature_admission_event_display') . '/js/gsb_feature_admission_event_display.js');
-  }
   if ($views->name == 'admission_events' && $views->current_display == 'location_panel_pane') {
     $output = str_replace(', United States ','',$output);
     drupal_add_js(drupal_get_path('module', 'gsb_feature_admission_event_display') . '/js/gsb_feature_admission_event_location.js');
@@ -160,4 +157,20 @@ function gsb_feature_admission_event_display_views_pre_render($view){
     // replace it with our new result set
     $view->result = $new_results;
   }
+}
+
+
+function gsb_feature_admission_event_display_form_views_exposed_form_alter(&$form, &$form_state) {
+  $view_list = array("views-exposed-form-admission-events-msx-admission-panel-pane",
+                     "views-exposed-form-admission-events-mba-admission-panel-pane");
+  if (in_array($form['#id'], $view_list)){
+    $form['secondary']['done'] = array(
+      '#type' => 'submit',
+      '#value' => t('Done'),
+    );
+    $form['secondary']['clear-all'] = array(
+      '#type' => 'button',
+      '#value' => t('Clear All'),
+    );
+    }
 }

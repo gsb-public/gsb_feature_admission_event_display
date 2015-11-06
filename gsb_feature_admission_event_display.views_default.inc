@@ -348,11 +348,9 @@ function gsb_feature_admission_event_display_views_default_views() {
   /* Display: MBA Admission Events */
   $handler = $view->new_display('panel_pane', 'MBA Admission Events', 'mba_admission_panel_pane');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'general' => array(
@@ -416,7 +414,55 @@ function gsb_feature_admission_event_display_views_default_views() {
     'field_event_date_value2' => array(
       'bef_format' => 'default',
       'more_options' => array(
-        'is_secondary' => 0,
+        'is_secondary' => 1,
+        'any_label' => '',
+        'bef_filter_description' => '',
+        'tokens' => array(
+          'available' => array(
+            0 => 'global_types',
+            'secondary_label' => NULL,
+            'collapsible_label' => NULL,
+            'combine_rewrite' => NULL,
+            'reset_label' => NULL,
+            'bef_filter_description' => NULL,
+            'any_label' => NULL,
+            'filter_rewrite_values' => NULL,
+          ),
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+          'filter_rewrite_values' => NULL,
+        ),
+        'rewrite' => array(
+          'filter_rewrite_values' => '',
+          'secondary_label' => NULL,
+          'collapsible_label' => NULL,
+          'combine_rewrite' => NULL,
+          'reset_label' => NULL,
+          'bef_filter_description' => NULL,
+          'any_label' => NULL,
+        ),
+        'secondary_label' => NULL,
+        'collapsible_label' => NULL,
+        'combine_rewrite' => NULL,
+        'reset_label' => NULL,
+        'filter_rewrite_values' => NULL,
+      ),
+      'secondary_label' => NULL,
+      'collapsible_label' => NULL,
+      'combine_rewrite' => NULL,
+      'reset_label' => NULL,
+      'bef_filter_description' => NULL,
+      'any_label' => NULL,
+      'filter_rewrite_values' => NULL,
+    ),
+    'field_event_date_value' => array(
+      'bef_format' => 'default',
+      'more_options' => array(
+        'is_secondary' => 1,
         'any_label' => '',
         'bef_filter_description' => '',
         'tokens' => array(
@@ -938,9 +984,8 @@ function gsb_feature_admission_event_display_views_default_views() {
     276 => 0,
   );
   $handler->display->display_options['filters']['field_event_date_value2']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_event_date_value2']['default_date'] = 'now';
   $handler->display->display_options['filters']['field_event_date_value2']['default_to_date'] = 'now +1 years';
-  $handler->display->display_options['filters']['field_event_date_value2']['year_range'] = '2005:+3';
+  $handler->display->display_options['filters']['field_event_date_value2']['year_range'] = '-0:+3';
   /* Filter criterion: Content: Date -  start date (field_event_date) */
   $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -1008,7 +1053,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     276 => 0,
   );
   $handler->display->display_options['filters']['field_event_date_value']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_event_date_value']['default_date'] = 'now + 1 year';
+  $handler->display->display_options['filters']['field_event_date_value']['year_range'] = '-0:+3';
   /* Filter criterion: Field collection item: Location Type (field_event_location_type) */
   $handler->display->display_options['filters']['field_event_location_type_value']['id'] = 'field_event_location_type_value';
   $handler->display->display_options['filters']['field_event_location_type_value']['table'] = 'field_data_field_event_location_type';
@@ -1239,6 +1284,13 @@ function gsb_feature_admission_event_display_views_default_views() {
     'Closed' => 'Closed',
   );
   $handler->display->display_options['filters']['field_event_status_value']['group'] = 1;
+  /* Filter criterion: Content: Date - end date (field_event_date:value2) */
+  $handler->display->display_options['filters']['field_event_date_value2_1']['id'] = 'field_event_date_value2_1';
+  $handler->display->display_options['filters']['field_event_date_value2_1']['table'] = 'field_data_field_event_date';
+  $handler->display->display_options['filters']['field_event_date_value2_1']['field'] = 'field_event_date_value2';
+  $handler->display->display_options['filters']['field_event_date_value2_1']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value2_1']['default_date'] = '12AM today';
+  $handler->display->display_options['filters']['field_event_date_value2_1']['year_range'] = '-0:+3';
   $handler->display->display_options['pane_title'] = 'Admission Events: MBA';
   $handler->display->display_options['pane_category']['name'] = 'Non-customizable Content Lists';
   $handler->display->display_options['pane_category']['weight'] = '0';
@@ -2062,12 +2114,10 @@ function gsb_feature_admission_event_display_views_default_views() {
   /* Display: MSX Admission Events */
   $handler = $view->new_display('panel_pane', 'MSX Admission Events', 'msx_admission_panel_pane');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
-  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'reset';
-  $handler->display->display_options['exposed_form']['options']['autosubmit'] = TRUE;
   $handler->display->display_options['exposed_form']['options']['autosubmit_hide'] = FALSE;
   $handler->display->display_options['exposed_form']['options']['bef'] = array(
     'general' => array(
@@ -2131,7 +2181,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     'field_event_date_value2' => array(
       'bef_format' => 'default',
       'more_options' => array(
-        'is_secondary' => 0,
+        'is_secondary' => 1,
         'any_label' => '',
         'bef_filter_description' => '',
         'tokens' => array(
@@ -2179,7 +2229,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     'field_event_date_value' => array(
       'bef_format' => 'default',
       'more_options' => array(
-        'is_secondary' => 0,
+        'is_secondary' => 1,
         'any_label' => '',
         'bef_filter_description' => '',
         'tokens' => array(
@@ -2701,9 +2751,8 @@ function gsb_feature_admission_event_display_views_default_views() {
     276 => 0,
   );
   $handler->display->display_options['filters']['field_event_date_value2']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_event_date_value2']['default_date'] = 'now';
   $handler->display->display_options['filters']['field_event_date_value2']['default_to_date'] = 'now +1 years';
-  $handler->display->display_options['filters']['field_event_date_value2']['year_range'] = '2005:+3';
+  $handler->display->display_options['filters']['field_event_date_value2']['year_range'] = '-0:+3';
   /* Filter criterion: Content: Date -  start date (field_event_date) */
   $handler->display->display_options['filters']['field_event_date_value']['id'] = 'field_event_date_value';
   $handler->display->display_options['filters']['field_event_date_value']['table'] = 'field_data_field_event_date';
@@ -2771,7 +2820,6 @@ function gsb_feature_admission_event_display_views_default_views() {
     276 => 0,
   );
   $handler->display->display_options['filters']['field_event_date_value']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_event_date_value']['default_date'] = 'now + 1 year';
   /* Filter criterion: Field collection item: Location Type (field_event_location_type) */
   $handler->display->display_options['filters']['field_event_location_type_value']['id'] = 'field_event_location_type_value';
   $handler->display->display_options['filters']['field_event_location_type_value']['table'] = 'field_data_field_event_location_type';
@@ -3002,6 +3050,13 @@ function gsb_feature_admission_event_display_views_default_views() {
     'Closed' => 'Closed',
   );
   $handler->display->display_options['filters']['field_event_status_value']['group'] = 1;
+  /* Filter criterion: Content: Date -  start date (field_event_date) */
+  $handler->display->display_options['filters']['field_event_date_value_1']['id'] = 'field_event_date_value_1';
+  $handler->display->display_options['filters']['field_event_date_value_1']['table'] = 'field_data_field_event_date';
+  $handler->display->display_options['filters']['field_event_date_value_1']['field'] = 'field_event_date_value';
+  $handler->display->display_options['filters']['field_event_date_value_1']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value_1']['default_date'] = '12AM today';
+  $handler->display->display_options['filters']['field_event_date_value_1']['year_range'] = '-0:+3';
   $handler->display->display_options['pane_title'] = 'Admission Events: MSx';
   $handler->display->display_options['pane_category']['name'] = 'Non-customizable Content Lists';
   $handler->display->display_options['pane_category']['weight'] = '0';
