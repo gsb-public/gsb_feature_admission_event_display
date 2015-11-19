@@ -348,6 +348,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   /* Display: MBA Admission Events */
   $handler = $view->new_display('panel_pane', 'MBA Admission Events', 'mba_admission_panel_pane');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
@@ -2114,6 +2115,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   /* Display: MSX Admission Events */
   $handler = $view->new_display('panel_pane', 'MSX Admission Events', 'msx_admission_panel_pane');
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'better_exposed_filters';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
