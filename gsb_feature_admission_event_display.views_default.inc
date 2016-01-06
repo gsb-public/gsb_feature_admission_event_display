@@ -53,7 +53,6 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = 'No events found.';
   $handler->display->display_options['empty']['area']['format'] = 'gsb_wysiwyg_text';
   /* Relationship: Content: Event Location (field_event_location) */
   $handler->display->display_options['relationships']['field_event_location_value']['id'] = 'field_event_location_value';
