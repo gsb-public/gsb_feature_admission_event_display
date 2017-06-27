@@ -1281,17 +1281,6 @@ function gsb_feature_admission_event_display_views_default_views() {
     'Yes' => 'Yes',
   );
   $handler->display->display_options['filters']['field_calendar_display_value']['group'] = 1;
-  /* Filter criterion: Content: Event Status (field_event_status) */
-  $handler->display->display_options['filters']['field_event_status_value']['id'] = 'field_event_status_value';
-  $handler->display->display_options['filters']['field_event_status_value']['table'] = 'field_data_field_event_status';
-  $handler->display->display_options['filters']['field_event_status_value']['field'] = 'field_event_status_value';
-  $handler->display->display_options['filters']['field_event_status_value']['value'] = array(
-    'Active' => 'Active',
-    'Pending' => 'Pending',
-    'Completed' => 'Completed',
-    'Closed' => 'Closed',
-  );
-  $handler->display->display_options['filters']['field_event_status_value']['group'] = 1;
   /* Filter criterion: Content: Date - end date (field_event_date:value2) */
   $handler->display->display_options['filters']['field_event_date_value2_1']['id'] = 'field_event_date_value2_1';
   $handler->display->display_options['filters']['field_event_date_value2_1']['table'] = 'field_data_field_event_date';
