@@ -1191,6 +1191,16 @@ function gsb_feature_admission_event_display_views_default_views() {
     331 => 0,
   );
   $handler->display->display_options['filters']['field_event_status_value']['expose']['reduce'] = TRUE;
+  /* Filter criterion: Content: Event Status (field_event_status) */
+  $handler->display->display_options['filters']['field_event_status_value_1']['id'] = 'field_event_status_value_1';
+  $handler->display->display_options['filters']['field_event_status_value_1']['table'] = 'field_data_field_event_status';
+  $handler->display->display_options['filters']['field_event_status_value_1']['field'] = 'field_event_status_value';
+  $handler->display->display_options['filters']['field_event_status_value_1']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_event_status_value_1']['value'] = array(
+    'Pending' => 'Pending',
+    'Completed' => 'Completed',
+    'Denied' => 'Denied',
+  );
   $handler->display->display_options['pane_title'] = 'Admission Events: MBA';
   $handler->display->display_options['pane_category']['name'] = 'Non-customizable Content Lists';
   $handler->display->display_options['pane_category']['weight'] = '0';
