@@ -187,7 +187,11 @@ function gsb_feature_admission_event_display_views_pre_render($view){
 function gsb_feature_admission_event_display_form_views_exposed_form_alter(&$form, &$form_state) {
   $view_list = array("views-exposed-form-admission-events-msx-admission-panel-pane",
                      "views-exposed-form-admission-events-mba-admission-panel-pane");
-  if (in_array($form['#id'], $view_list)){
+  if (in_array($form['#id'], $view_list)) {
+    $form['secondary']['field_event_status_value']['#options'] = array(
+      'Active' => 'Open',
+      'Waitlisted' => 'Waitlisted'
+    );
     $form['secondary']['done'] = array(
       '#type' => 'submit',
       '#value' => t('Done'),
@@ -196,5 +200,5 @@ function gsb_feature_admission_event_display_form_views_exposed_form_alter(&$for
       '#type' => 'button',
       '#value' => t('Clear All'),
     );
-    }
+  }
 }
