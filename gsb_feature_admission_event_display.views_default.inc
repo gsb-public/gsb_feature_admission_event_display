@@ -682,6 +682,17 @@ function gsb_feature_admission_event_display_views_default_views() {
     12401 => '12401',
   );
   $handler->display->display_options['filters']['access_id']['size'] = '5';
+  /* Filter criterion: Content: Event Status (field_event_status) */
+  $handler->display->display_options['filters']['field_event_status_value_1']['id'] = 'field_event_status_value_1';
+  $handler->display->display_options['filters']['field_event_status_value_1']['table'] = 'field_data_field_event_status';
+  $handler->display->display_options['filters']['field_event_status_value_1']['field'] = 'field_event_status_value';
+  $handler->display->display_options['filters']['field_event_status_value_1']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_event_status_value_1']['value'] = array(
+    'Pending' => 'Pending',
+    'Completed' => 'Completed',
+    'Denied' => 'Denied',
+  );
+  $handler->display->display_options['filters']['field_event_status_value_1']['group'] = 1;
   /* Filter criterion: Content: Search field (field_search_field) */
   $handler->display->display_options['filters']['field_search_field_value']['id'] = 'field_search_field_value';
   $handler->display->display_options['filters']['field_search_field_value']['table'] = 'field_data_field_search_field';
@@ -1113,6 +1124,7 @@ function gsb_feature_admission_event_display_views_default_views() {
   $handler->display->display_options['filters']['field_event_date_value2_1']['table'] = 'field_data_field_event_date';
   $handler->display->display_options['filters']['field_event_date_value2_1']['field'] = 'field_event_date_value2';
   $handler->display->display_options['filters']['field_event_date_value2_1']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_event_date_value2_1']['group'] = 1;
   $handler->display->display_options['filters']['field_event_date_value2_1']['default_date'] = '12AM today';
   $handler->display->display_options['filters']['field_event_date_value2_1']['year_range'] = '-0:+3';
   /* Filter criterion: Content: Event Status (field_event_status) */
@@ -1123,6 +1135,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     'Active' => 'Active',
     'Waitlisted' => 'Waitlisted',
   );
+  $handler->display->display_options['filters']['field_event_status_value']['group'] = 1;
   $handler->display->display_options['filters']['field_event_status_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_status_value']['expose']['operator_id'] = 'field_event_status_value_op';
   $handler->display->display_options['filters']['field_event_status_value']['expose']['label'] = 'Event Status';
@@ -1191,16 +1204,6 @@ function gsb_feature_admission_event_display_views_default_views() {
     331 => 0,
   );
   $handler->display->display_options['filters']['field_event_status_value']['expose']['reduce'] = TRUE;
-  /* Filter criterion: Content: Event Status (field_event_status) */
-  $handler->display->display_options['filters']['field_event_status_value_1']['id'] = 'field_event_status_value_1';
-  $handler->display->display_options['filters']['field_event_status_value_1']['table'] = 'field_data_field_event_status';
-  $handler->display->display_options['filters']['field_event_status_value_1']['field'] = 'field_event_status_value';
-  $handler->display->display_options['filters']['field_event_status_value_1']['operator'] = 'not';
-  $handler->display->display_options['filters']['field_event_status_value_1']['value'] = array(
-    'Pending' => 'Pending',
-    'Completed' => 'Completed',
-    'Denied' => 'Denied',
-  );
   $handler->display->display_options['pane_title'] = 'Admission Events: MBA';
   $handler->display->display_options['pane_category']['name'] = 'Non-customizable Content Lists';
   $handler->display->display_options['pane_category']['weight'] = '0';
@@ -2352,6 +2355,17 @@ function gsb_feature_admission_event_display_views_default_views() {
     12406 => '12406',
   );
   $handler->display->display_options['filters']['access_id']['size'] = '5';
+  /* Filter criterion: Content: Event Status (field_event_status) */
+  $handler->display->display_options['filters']['field_event_status_value_1']['id'] = 'field_event_status_value_1';
+  $handler->display->display_options['filters']['field_event_status_value_1']['table'] = 'field_data_field_event_status';
+  $handler->display->display_options['filters']['field_event_status_value_1']['field'] = 'field_event_status_value';
+  $handler->display->display_options['filters']['field_event_status_value_1']['operator'] = 'not';
+  $handler->display->display_options['filters']['field_event_status_value_1']['value'] = array(
+    'Pending' => 'Pending',
+    'Completed' => 'Completed',
+    'Denied' => 'Denied',
+  );
+  $handler->display->display_options['filters']['field_event_status_value_1']['group'] = 1;
   /* Filter criterion: Content: Search field (field_search_field) */
   $handler->display->display_options['filters']['field_search_field_value']['id'] = 'field_search_field_value';
   $handler->display->display_options['filters']['field_search_field_value']['table'] = 'field_data_field_search_field';
@@ -2800,6 +2814,7 @@ function gsb_feature_admission_event_display_views_default_views() {
     'Active' => 'Active',
     'Waitlisted' => 'Waitlisted',
   );
+  $handler->display->display_options['filters']['field_event_status_value']['group'] = 1;
   $handler->display->display_options['filters']['field_event_status_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_event_status_value']['expose']['operator_id'] = 'field_event_status_value_op';
   $handler->display->display_options['filters']['field_event_status_value']['expose']['label'] = 'Event Status';
